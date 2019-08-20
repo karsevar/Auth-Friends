@@ -1,17 +1,24 @@
 import React, {useState} from 'react';
+import Loader from 'react-loader-spinner';
 import axios from 'axios';
 
 function Login(props) {
     const [credentials, setCredentials] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const login = e => {
         e.preventDefault();
+        setIsLoading(true)
         axios
             .post('http://localhost:5000/api/login', credentials) 
             .then(res => {
+                setIsLoading(false)
                 localStorage.setItem('token', res.data.payload)
             })
-            .catch(err => console.log(err.response))
+            .catch(err => {
+                setIsLoading(false) 
+                console.log(err.response)
+            })
     }
 
     const handleChange = e => {
@@ -23,7 +30,6 @@ function Login(props) {
             <form onSubmit={login}>
                 <input 
                     type='text'
-                    type='text'
                     name='username'
                     value={credentials.username}
                     onChange={handleChange}
@@ -34,7 +40,16 @@ function Login(props) {
                     value={credentials.password}
                     onChange={handleChange}
                 />
-                <button>Submit!</button>
+                <button>
+                    {isLoading ? (
+                        <Loader 
+                        type="TailSpin" 
+                        color="blue" 
+                        height={10} 
+                        width={5} 
+                    />
+                    ) : 'Submit!'}
+                </button>
             </form>
         </div>
     )

@@ -5,8 +5,10 @@ import FriendCards from './FriendCards';
 function Friends(props) {
     const [friend, setFriend] = useState({name: '', age: '', email: ''})
 
+    const [newFriend, setNewFriend] = useState({})
+
     const handleChange = event => {
-        console.log(friend);
+        // console.log(friend);
         setFriend({...friend, [event.target.name]: event.target.value}) 
     }
 
@@ -15,6 +17,8 @@ function Friends(props) {
         axiosWithAuth().post('http://localhost:5000/api/friends', friend)
             .then(res => console.log(res)) 
             .catch(err => console.log(err))
+
+        setNewFriend({...friend})
 
         setFriend({name: '', age: '', email: ''})
     }
@@ -50,7 +54,7 @@ function Friends(props) {
                     <button>Submit</button>
                 </form>
             </div>
-            <FriendCards />
+            <FriendCards newFriend={newFriend} />
         </div>
     )
 }
