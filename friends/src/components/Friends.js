@@ -1,6 +1,13 @@
 import React, {useState} from 'react';
 
 function Friends(props) {
+    const [friend, setFriend] = useState({name: '', age: '', email: ''})
+
+    const handleChange = event => {
+        console.log(friend);
+        setFriend({...friend, [event.target.name]: event.target.value}) 
+    }
+
     return (
         <div className='friends-container'>
             <div className='friends-form'>
@@ -8,25 +15,25 @@ function Friends(props) {
                     <input
                         placeholder='Name'
                         type='text'
-                        // value={}
+                        value={friend.name}
                         name='name'
-                        // onChange={}
+                        onChange={handleChange}
                         required
                     />
                     <input 
                         placeholder='Age'
                         type='number'
-                        // value={}
+                        value={friend.age}
                         name='age'
-                        // onChange={}
+                        onChange={handleChange}
                         required
                     />
                     <input
                         placeholder='Email'
                         type='text'
-                        // value={}
+                        value={friend.email}
                         name='email'
-                        // onChange={}
+                        onChange={handleChange}
                         required
                     />
                 </form>
