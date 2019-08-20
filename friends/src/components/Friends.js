@@ -36,6 +36,7 @@ function Friends(props) {
                         onChange={handleChange}
                         required
                     />
+                    <button>Submit</button>
                 </form>
             </div>
         </div>
