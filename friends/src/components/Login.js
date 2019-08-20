@@ -8,7 +8,9 @@ function Login(props) {
         e.preventDefault();
         axios
             .post('http://localhost:5000/api/login', credentials) 
-            .then(res => console.log(res))
+            .then(res => {
+                localStorage.setItem('token', res.data.payload)
+            })
             .catch(err => console.log(err.response))
     }
 
