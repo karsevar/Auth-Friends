@@ -7,13 +7,21 @@ function FriendCards(props) {
 
     useEffect(() => {
         axiosWithAuth().get('http://localhost:5000/api/friends')
-            .then(res => console.log(res))
+            .then(res => {
+                setFriends([...res.data])
+            })
             .catch(err => console.log(err))
     }, [friends])
 
     return (
         <div className='friends-list'>
-
+            {friends.map(friend => (
+                <div className='friend-card'>
+                    <h3>{friend.name}</h3>
+                    <p>{friend.age}</p>
+                    <p>{friend.email}</p>
+                </div>
+            ))}
         </div>
     )
 }

@@ -15,6 +15,8 @@ function Friends(props) {
         axiosWithAuth().post('http://localhost:5000/api/friends', friend)
             .then(res => console.log(res)) 
             .catch(err => console.log(err))
+
+        setFriend({name: '', age: '', email: ''})
     }
 
     return (
