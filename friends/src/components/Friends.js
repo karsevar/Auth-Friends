@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {axiosWithAuth} from '../auth/axiosWithAuth';
 
 function Friends(props) {
     const [friend, setFriend] = useState({name: '', age: '', email: ''})
@@ -8,10 +9,17 @@ function Friends(props) {
         setFriend({...friend, [event.target.name]: event.target.value}) 
     }
 
+    const handleSubmit = event => {
+        event.preventDefault();
+        axiosWithAuth().post('http://localhost:5000/api/friends', friend)
+            .then(res => console.log(res)) 
+            .catch(err => console.log(err))
+    }
+
     return (
         <div className='friends-container'>
             <div className='friends-form'>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <input
                         placeholder='Name'
                         type='text'
