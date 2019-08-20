@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {axiosWithAuth} from '../auth/axiosWithAuth';
+import FriendCards from './FriendCards';
 
 function Friends(props) {
     const [friend, setFriend] = useState({name: '', age: '', email: ''})
@@ -47,6 +48,7 @@ function Friends(props) {
                     <button>Submit</button>
                 </form>
             </div>
+            <FriendCards />
         </div>
     )
 }
