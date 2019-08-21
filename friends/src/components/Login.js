@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Button, Form, Container} from 'semantic-ui-react';
 import Loader from 'react-loader-spinner';
 import axios from 'axios';
 
@@ -28,31 +29,65 @@ function Login(props) {
 
     return (
         <div className='login-form'>
-            <form onSubmit={login}>
-                <input 
-                    type='text'
-                    name='username'
-                    value={credentials.username}
-                    onChange={handleChange}
-                />
-                <input
-                    type='password'
-                    name='password'
-                    value={credentials.password}
-                    onChange={handleChange}
-                />
-                <button>
-                    {isLoading ? (
-                        <Loader 
-                        type="TailSpin" 
-                        color="blue" 
-                        height={10} 
-                        width={5} 
-                    />
-                    ) : 'Submit!'}
-                </button>
-            </form>
+            <Container textAlign='center'>
+                <Form onSubmit={login}>
+                    <Form.Field>
+                        <label>Username</label>
+                        <input 
+                            type='text'
+                            name='username'
+                            value={credentials.username}
+                            onChange={handleChange}
+                        />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Password</label>
+                        <input
+                            type='password'
+                            name='password'
+                            value={credentials.password}
+                            onChange={handleChange}
+                        />
+                    </Form.Field>
+                    <Button type='submit'>
+                        {isLoading ? (
+                                    <Loader 
+                                    type="TailSpin" 
+                                    color="blue" 
+                                    height={10} 
+                                    width={5} 
+                                />
+                                ) : 'Submit!'}
+                    </Button>
+                </Form>
+            </Container>
         </div>
+        // <div className='login-form'>
+        //     <form onSubmit={login}>
+        //         <input 
+        //             type='text'
+        //             name='username'
+        //             value={credentials.username}
+        //             onChange={handleChange}
+        //         />
+        //         <input
+        //             type='password'
+        //             name='password'
+        //             value={credentials.password}
+        //             onChange={handleChange}
+        //         />
+        //         <button>
+        //             {isLoading ? (
+        //                 <Loader 
+        //                 type="TailSpin" 
+        //                 color="blue" 
+        //                 height={10} 
+        //                 width={5} 
+        //             />
+        //             ) : 'Submit!'}
+        //         </button>
+        //     </form>
+        // </div>
     )
 
 }
