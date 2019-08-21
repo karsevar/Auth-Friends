@@ -2,6 +2,12 @@ import React, {useState} from 'react';
 import {Button, Form, Container} from 'semantic-ui-react';
 import Loader from 'react-loader-spinner';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const LoginForm = styled.div`
+    width: 300px;
+    margin: 0 auto;
+`;
 
 function Login(props) {
     const [credentials, setCredentials] = useState({});
@@ -28,7 +34,7 @@ function Login(props) {
     }
 
     return (
-        <div className='login-form'>
+        <LoginForm>
             <Container textAlign='center'>
                 <Form onSubmit={login}>
                     <Form.Field>
@@ -61,33 +67,7 @@ function Login(props) {
                     </Button>
                 </Form>
             </Container>
-        </div>
-        // <div className='login-form'>
-        //     <form onSubmit={login}>
-        //         <input 
-        //             type='text'
-        //             name='username'
-        //             value={credentials.username}
-        //             onChange={handleChange}
-        //         />
-        //         <input
-        //             type='password'
-        //             name='password'
-        //             value={credentials.password}
-        //             onChange={handleChange}
-        //         />
-        //         <button>
-        //             {isLoading ? (
-        //                 <Loader 
-        //                 type="TailSpin" 
-        //                 color="blue" 
-        //                 height={10} 
-        //                 width={5} 
-        //             />
-        //             ) : 'Submit!'}
-        //         </button>
-        //     </form>
-        // </div>
+        </LoginForm>
     )
 
 }

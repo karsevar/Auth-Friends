@@ -1,7 +1,14 @@
 import React, {useState} from 'react';
 import {Button, Form, Input} from 'semantic-ui-react';
+import styled from 'styled-components';
+
 import {axiosWithAuth} from '../auth/axiosWithAuth';
 import FriendCards from './FriendCards';
+
+const FriendForm = styled.div`
+    width: 500px;
+    margin: 0 auto;
+`;
 
 function Friends(props) {
     const [friend, setFriend] = useState({name: '', age: '', email: ''})
@@ -26,10 +33,10 @@ function Friends(props) {
 
     return (
         <div className='friends-container'>
-            <div className='friends-form'>
+            <FriendForm>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group widths='equal'>
-                        <Form.Field
+                        <Form.Input
                             control={Input} 
                             placeholder='Name'
                             label='Name'
@@ -38,9 +45,7 @@ function Friends(props) {
                             name='name'
                             required
                         />
-                    </Form.Group>
-                    <Form.Group widths='equal'>
-                        <Form.Field
+                        <Form.Input
                             control={Input} 
                             placeholder='Age'
                             label='Age'
@@ -49,9 +54,7 @@ function Friends(props) {
                             name='age'
                             required
                         />
-                    </Form.Group>
-                    <Form.Group widths='equal'>
-                        <Form.Field
+                        <Form.Input
                             control={Input} 
                             placeholder='Email'
                             label='Email'
@@ -61,36 +64,9 @@ function Friends(props) {
                             required
                         />
                     </Form.Group>
-                    <button>Submit</button>
+                    <Button>Submit</Button>
                 </Form>
-            </div>
-        {/*        <form onSubmit={handleSubmit}>
-        //             <input
-        //                 placeholder='Name'
-        //                 type='text'
-        //                 value={friend.name}
-        //                 name='name'
-        //                 onChange={handleChange}
-        //                 required
-        //             />
-        //             <input 
-        //                 placeholder='Age'
-        //                 type='number'
-        //                 value={friend.age}
-        //                 name='age'
-        //                 onChange={handleChange}
-        //                 required
-        //             />
-        //             <input
-        //                 placeholder='Email'
-        //                 type='text'
-                         value={friend.email}
-                         name='email'
-                        onChange={handleChange}
-                         required
-                   />
-                   <button>Submit</button>
-            </form> */}
+            </FriendForm>
             <FriendCards newFriend={newFriend} />
         </div>
     )

@@ -1,7 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import Loader from 'react-loader-spinner';
+import { Button, Card, Image } from 'semantic-ui-react'
+import styled from 'styled-components';
 
 import {axiosWithAuth} from '../auth/axiosWithAuth';
+
+const FriendsList = styled.div`
+    margin: 20px 10px 0 10px;
+`;
 
 function FriendCards(props) {
     
@@ -24,7 +30,7 @@ function FriendCards(props) {
     }, [props.newFriend])
 
     return (
-        <div className='friends-list'>
+        <FriendsList>
             {isLoading ? (
                     <Loader 
                         type='ThreeDots'
@@ -33,16 +39,20 @@ function FriendCards(props) {
                         width={400}
                     />
                 ) : (
-                    friends.map((friend, index)  => (
-                        <div key={index} className='friend-card'>
-                            <h3>{friend.name}</h3>
-                            <p>{friend.age}</p>
-                            <p>{friend.email}</p>
-                        </div>
-                    ))
+                    <Card.Group>
+                    {friends.map((friend, index)  => (
+                        <Card key={index}>
+                            <Card.Content>
+                                <Card.Header>{friend.name}</Card.Header>
+                                <Card.Meta>{friend.age}</Card.Meta>
+                                <Card.Meta>{friend.email}</Card.Meta>
+                            </Card.Content>
+                        </Card>
+                    ))}
+                    </Card.Group>
                 )
             }
-        </div>
+        </FriendsList>
     )
 }
 
